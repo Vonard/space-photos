@@ -164,4 +164,4 @@ cython_debug/
 .upm/
 poetry.lock
 pyproject.toml
-/images/
+images
