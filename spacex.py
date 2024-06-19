@@ -1,7 +1,8 @@
 from download import download_image
 import requests
-def fetch_spacex_last_launch():
-    url = "https://api.spacexdata.com/v5/launches/5eb87d47ffd86e000604b38a"
+import argparse
+def fetch_spacex_last_launch(id):
+    url = f"https://api.spacexdata.com/v5/launches/{id}"
     response = requests.get(url)
     response.raise_for_status()
     links = response.json()["links"]["flickr"]["original"]
@@ -10,7 +11,11 @@ def fetch_spacex_last_launch():
         download_image(link, filename)
 
 def main():
-    fetch_spacex_last_launch()
+    parser = argparse.ArgumentParser(
+        description="Download images from Spacex")
+    parser.add_argument("--id_spacex", help="ID of the launch for SpaceX API", default="latest")
+    args = parser.parse_args()
+    fetch_spacex_last_launch(args.id_spacex)
 
 if __name__ == "__main__":
     main()
