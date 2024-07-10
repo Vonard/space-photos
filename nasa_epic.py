@@ -19,5 +19,6 @@ def main():
     api_key = os.environ['NASA_API_KEY']
     fetch_nasa_epic(api_key )
 
+
 if __name__ == "__main__":
     main()

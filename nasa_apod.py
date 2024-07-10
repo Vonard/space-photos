@@ -28,5 +28,6 @@ def main():
     api_key = os.environ['NASA_API_KEY']
     fetch_nasa_apod(api_key, args.count)
 
+
 if __name__ == "__main__":
     main()

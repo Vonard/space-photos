@@ -17,5 +17,6 @@ def main():
     args = parser.parse_args()
     fetch_spacex_last_launch(args.id_spacex)
 
+
 if __name__ == "__main__":
     main()
