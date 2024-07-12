@@ -17,7 +17,7 @@ def main():
         for root,dirs,files in os.walk(images_folder):
             random.shuffle(files)
             for file in files:
-                bot.send_document(chat_id="@space_photos0", document=open(f'{images_folder}/{file}', 'rb'))
+                bot.send_document(chat_id=os.environ['CHAT_ID'], document=open(f'{images_folder}/{file}', 'rb'))
                 time.sleep(5)
         time.sleep(args.timeout)
 
