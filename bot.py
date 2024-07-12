@@ -9,8 +9,8 @@ def main():
     load_dotenv()
     images_folder = os.environ['IMAGES_FOLDER']
     bot = telegram.Bot(token=os.environ['TELEGRAM_BOT_TOKEN'])
-    parser = argparse.ArgumentParser(description="")
-    parser.add_argument("--timeout", help="", type=int, default=14400)
+    parser = argparse.ArgumentParser(description="Launches the telegram bot, that sends pictures.")
+    parser.add_argument("--timeout", help="Selects the time after which the bot starts sending pictures again.", type=int, default=14400)
     args = parser.parse_args()
 
     while True:
