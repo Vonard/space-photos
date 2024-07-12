@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 def main():
     load_dotenv()
     images_folder = os.environ['IMAGES_FOLDER']
-    bot = telegram.Bot(token="7245572263:AAHRGAQE3v8EN4wUvTiKiLONyTiYiCBHLJI")
+    bot = telegram.Bot(token=os.environ['TELEGRAM_BOT_TOKEN'])
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("--timeout", help="", type=int, default=14400)
     args = parser.parse_args()
