@@ -1,6 +1,7 @@
 from download import download_image
 import requests
 import argparse
+from dotenv import load_dotenv
 def fetch_spacex_last_launch(id):
     url = f"https://api.spacexdata.com/v5/launches/{id}"
     response = requests.get(url)
@@ -11,6 +12,7 @@ def fetch_spacex_last_launch(id):
         download_image(link, filename)
 
 def main():
+    load_dotenv()
     parser = argparse.ArgumentParser(
         description="Download images from Spacex")
     parser.add_argument("--id_spacex", help="ID of the launch for SpaceX API", default="latest")
