@@ -5,7 +5,7 @@ import requests
 import os
 import argparse
 
-def fetch_nasa_apod(api_key, count):
+def fetch_nasa_apod(api_key, count, images_folder):
     url = "https://api.nasa.gov/planetary/apod"
     payload = {"api_key": api_key,
                "count": count}
@@ -17,7 +17,7 @@ def fetch_nasa_apod(api_key, count):
         if get_extension(picture["url"]):
             extension = get_extension(picture["url"])
             filename = f"nasa_{index}{extension}"
-            download_image(picture["url"], filename)
+            download_image(picture["url"], images_folder, filename)
 
 def main():
     parser = argparse.ArgumentParser(
@@ -26,7 +26,8 @@ def main():
     args = parser.parse_args()
     load_dotenv()
     api_key = os.environ['NASA_API_KEY']
-    fetch_nasa_apod(api_key, args.count)
+    images_folder = os.environ['IMAGES_FOLDER']
+    fetch_nasa_apod(api_key, args.count, images_folder)
 
 
 if __name__ == "__main__":

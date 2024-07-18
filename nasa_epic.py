@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import requests
 import os
 
-def fetch_nasa_epic(api_key):
+def fetch_nasa_epic(api_key, images_folder):
     url = "https://api.nasa.gov/EPIC/api/natural/images"
     payload = {"api_key": api_key}
     response = requests.get(url, params=payload)
@@ -12,12 +12,13 @@ def fetch_nasa_epic(api_key):
     for index, picture in enumerate(pictures):
         date = pictures[index]["date"].split(" ")[0].split("-")
         epic_url = f"https://api.nasa.gov/EPIC/archive/natural/{date[0]}/{date[1]}/{date[2]}/png/{pictures[index]['image']}.png"
-        download_image(epic_url, f"epic_{index}.png", api_key)
+        download_image(epic_url, images_folder, f"epic_{index}.png", api_key)
 
 def main():
     load_dotenv()
     api_key = os.environ['NASA_API_KEY']
-    fetch_nasa_epic(api_key )
+    images_folder = os.environ['IMAGES_FOLDER']
+    fetch_nasa_epic(api_key, images_folder)
 
 
 if __name__ == "__main__":

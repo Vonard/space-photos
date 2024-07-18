@@ -4,8 +4,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from dotenv import load_dotenv
 
-def download_image(url, filename, api_key = ""):
-    images_folder = os.environ['IMAGES_FOLDER']
+def download_image(url, images_folder, filename, api_key = ""):
     Path(images_folder).mkdir(parents=True, exist_ok=True)
     payload = {"api_key": api_key}
     response = requests.get(url, params=payload)
@@ -15,10 +14,3 @@ def download_image(url, filename, api_key = ""):
 
 def get_extension(url):
     return os.path.splitext(url)[1]
-
-def main():
-    load_dotenv()
-    
-
-if __name__ == "__main__":
-    main()
